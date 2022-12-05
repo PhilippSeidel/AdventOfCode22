@@ -1,0 +1,35 @@
+class Round:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+        self.score = 0
+        if b == 'X':
+            self.score += 1
+        elif b == 'Y':
+            self.score += 2
+        elif b == 'Z':
+            self.score += 3
+        if (a == 'A' and b == 'Y') or (a == 'B' and b == 'Z') or (a == 'C' and b == 'X'):
+            self.score += 6
+        elif (a == 'A' and b == 'X') or (a == 'B' and b == 'Y') or (a == 'C' and b == 'Z'):
+            self.score += 3
+
+    def __str__(self):
+        return str((self.a, self.b, self.score))
+
+
+input = open("input", "r").read().splitlines()
+
+# part one
+rounds = []
+
+for i in input:
+    parts = i.split()
+    rounds.append(Round(parts[0], parts[1]))
+
+score = 0
+for r in rounds:
+    score += r.score
+
+print(score)
+
